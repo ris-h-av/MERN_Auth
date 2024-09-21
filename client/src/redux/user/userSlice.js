@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { signOut } from "firebase/auth";
 
 const initialState = {
     currentUser: null,
@@ -46,6 +47,11 @@ const userSlice = createSlice({
             state.loading=false;
             state.error = action.payload;
         },
+        SignOut: (state)=>{
+            state.currentUser = null;
+            state.loading = false;
+            state.error = false;
+        },
     }
 });
 
@@ -58,7 +64,8 @@ export const {
     updateUserFailure,
     deleteUserStart,
     deleteUserSuccess,
-    deleteUserFailure
+    deleteUserFailure,
+    SignOut
 } = userSlice.actions;
 
 export default userSlice.reducer;
